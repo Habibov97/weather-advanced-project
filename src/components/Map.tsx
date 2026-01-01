@@ -4,5 +4,10 @@ import 'leaflet/dist/leaflet.css';
 type Props = {};
 
 export default function Map({}: Props) {
-  return <div>This is mapp</div>;
+  return (
+    <div>
+      <div>This is a map</div>
+      <p>this is a test paragraph for map!!!</p>
+    </div>
+  );
 }
