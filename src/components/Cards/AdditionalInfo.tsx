@@ -8,11 +8,15 @@ import Uv from '/src/assets/uv.svg?react';
 import Wind from '/src/assets/Wind.svg?react';
 import Pressure from '/src/assets/pressure.svg?react';
 import FormatComponentForAdditionalInfo from '../../utils/FormatComponentForAdditionalInfo';
+import { useMapContext } from '../../hooks/useMapContext';
 
 export default function AdditionalInfo() {
+  const { coords } = useMapContext(); //coords via context
+  const { lat, lon } = coords;
+
   const { data } = useSuspenseQuery({
-    queryKey: ['weather'],
-    queryFn: () => getWeather({ lat: 40, lon: 49, units: 'metric' }),
+    queryKey: ['weather', coords],
+    queryFn: () => getWeather({ lat, lon, units: 'metric' }),
   });
 
   return (
