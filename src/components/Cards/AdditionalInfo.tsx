@@ -8,11 +8,15 @@ import Uv from '/src/assets/uv.svg?react';
 import Wind from '/src/assets/Wind.svg?react';
 import Pressure from '/src/assets/pressure.svg?react';
 import FormatComponentForAdditionalInfo from '../../utils/FormatComponentForAdditionalInfo';
+import { useMapContext } from '../../hooks/useMapContext';
 
 export default function AdditionalInfo() {
+  const { coords } = useMapContext(); //coords via context
+  const { lat, lon } = coords;
+
   const { data } = useSuspenseQuery({
-    queryKey: ['weather'],
-    queryFn: () => getWeather({ lat: 40, lon: 49, units: 'metric' }),
+    queryKey: ['weather', coords],
+    queryFn: () => getWeather({ lat, lon, units: 'metric' }),
   });
 
   return (
@@ -20,10 +24,10 @@ export default function AdditionalInfo() {
       {rows.map(({ label, value, Icon }) => (
         <div key={value} className="flex justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-gray-500">{label}</span>
+            <span className="text-gray-300">{label}</span>
             <Icon className="size-8 invert" />
           </div>
-          <span>
+          <span className="text-gray-400">
             <FormatComponentForAdditionalInfo value={value} number={data.current[value]} />
           </span>
         </div>

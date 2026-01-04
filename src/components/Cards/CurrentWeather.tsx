@@ -1,19 +1,21 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getWeather } from '../../api';
-import Card from './Card';
+import { useMapContext } from '../../hooks/useMapContext';
 import WeatherIcon from '../WeatherIcon';
+import Card from './Card';
 
-type Props = {};
+export default function CurrentWeather() {
+  const { coords } = useMapContext(); //coords via context
+  const { lat, lon } = coords;
 
-export default function CurrentWeather({}: Props) {
   const { data } = useSuspenseQuery({
-    queryKey: ['weather'],
-    queryFn: () => getWeather({ lat: 40, lon: 49, units: 'metric' }),
+    queryKey: ['weather', coords],
+    queryFn: () => getWeather({ lat, lon, units: 'metric' }),
   });
 
   return (
-    <Card title={'Current Weather'} childrenClassName="flex flex-col items-center gap-6">
-      <div className="flex flex-col gap-2 items-center">
+    <Card title={'Current Weather'} childrenClassName="flex flex-col items-center gap-6 text-zinc-300">
+      <div className="flex flex-col gap-2 items-center ">
         <h2 className="text-6xl font-semibold text-center">{Math.round(data.current.temp)}°C</h2>
         <WeatherIcon src={data.current.weather[0].icon} className="size-14" />
         <h3 className="capitalize text-xl">{data.current.weather[0].description}</h3>
