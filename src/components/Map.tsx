@@ -22,13 +22,12 @@ export default function Map({}: Props) {
 }
 
 function MapClick() {
-  const { onMapClick } = useMapContext();
+  const { coords, onMapClick } = useMapContext();
   const map = useMap();
+  map.panTo([coords.lat, coords.lon]);
 
   map.on('click', (e) => {
     const { lat, lng } = e.latlng;
-
-    map.panTo([lat, lng]);
     onMapClick(lat, lng);
   });
 

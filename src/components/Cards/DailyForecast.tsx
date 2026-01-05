@@ -17,7 +17,7 @@ export default function DailyForecast() {
     <Card title={'Daily Forecast'} childrenClassName="flex flex-col gap-4">
       {data?.daily.map((day) => (
         <div key={day.dt} className="flex justify-between">
-          <p className="w-9 text-gray-300">
+          <p className="w-9 ">
             {new Date(day.dt * 1000).toLocaleDateString(undefined, {
               weekday: 'short',
             })}

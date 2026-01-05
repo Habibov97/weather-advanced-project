@@ -17,7 +17,7 @@ export default function HourlyForecast() {
     <Card title="Hourly Forecast (48 Hours)" childrenClassName="flex gap-6 overflow-x-scroll">
       {data?.hourly.map((hour) => (
         <div key={hour.dt} className="flex flex-col gap-2 items-center p-2">
-          <p className="whitespace-nowrap text-gray-300">
+          <p className="whitespace-nowrap ">
             {new Date(hour.dt * 1000).toLocaleTimeString(undefined, {
               hour: 'numeric',
               minute: '2-digit',

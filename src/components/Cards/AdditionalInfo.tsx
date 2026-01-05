@@ -24,10 +24,10 @@ export default function AdditionalInfo() {
       {rows.map(({ label, value, Icon }) => (
         <div key={value} className="flex justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-gray-300">{label}</span>
+            <span>{label}</span>
             <Icon className="size-8 invert" />
           </div>
-          <span className="text-gray-400">
+          <span>
             <FormatComponentForAdditionalInfo value={value} number={data.current[value]} />
           </span>
         </div>
