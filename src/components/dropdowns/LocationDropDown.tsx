@@ -5,7 +5,6 @@ type Props = {};
 
 export default function LocationDropDown({}: Props) {
   const { location, setLocation } = useMapContext();
-  console.log(location);
 
   return (
     <Select value={location} onValueChange={(value) => setLocation(value)}>
@@ -13,9 +12,10 @@ export default function LocationDropDown({}: Props) {
         <SelectValue placeholder={`Choose the location`} />
       </SelectTrigger>
       <SelectContent className="z-1001">
+        {location === 'custom' && <SelectItem value="custom">Custom</SelectItem>}
         {locations.map((city) => {
           return (
-            <SelectItem key={city} value={city.toLocaleLowerCase()}>
+            <SelectItem key={city} value={city}>
               {city}
             </SelectItem>
           );

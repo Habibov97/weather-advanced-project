@@ -8,12 +8,15 @@ import type { Coords } from './types';
 import LocationDropDown from './components/dropdowns/LocationDropDown';
 import { useQuery } from '@tanstack/react-query';
 import { getGeoCode } from './api';
+import MapTypeDropDown from './components/dropdowns/MapTypeDropdown';
 
 type MapContextType = {
   coords: Coords;
   onMapClick: (lat: number, lon: number) => void;
   location: string;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
+  mapType: string;
+  setMapType: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const MapContext = createContext<MapContextType | null>(null);
@@ -21,6 +24,7 @@ export const MapContext = createContext<MapContextType | null>(null);
 function App() {
   const [coordinates, setCoordinates] = useState<Coords>({ lat: 40, lon: 49 });
   const [location, setLocation] = useState('Baku');
+  const [mapType, setMapType] = useState('clouds_new');
 
   const { data: geoCodeData } = useQuery({
     queryKey: ['geocode', location],
@@ -37,8 +41,17 @@ function App() {
 
   return (
     <div className="flex flex-col gap-8 bg-card">
-      <MapContext.Provider value={{ coords, onMapClick, location, setLocation }}>
-        <LocationDropDown />
+      <MapContext.Provider value={{ coords, onMapClick, location, setLocation, mapType, setMapType }}>
+        <div className="flex gap-8 mt-10">
+          <div className="flex gap-4 items-center">
+            <p className="text-2xl font-semibold">Location:</p>
+            <LocationDropDown />
+          </div>
+          <div className="flex gap-4 items-center">
+            <p className="text-2xl font-semibold">Map type:</p>
+            <MapTypeDropDown />
+          </div>
+        </div>
         <Map />
         <CurrentWeather />
         <HourlyForecast />
