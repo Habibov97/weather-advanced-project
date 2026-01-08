@@ -9,6 +9,7 @@ import LocationDropDown from './components/dropdowns/LocationDropDown';
 import { useQuery } from '@tanstack/react-query';
 import { getGeoCode } from './api';
 import MapTypeDropDown from './components/dropdowns/MapTypeDropdown';
+import MapLegend from './components/MapLegend';
 
 type MapContextType = {
   coords: Coords;
@@ -52,7 +53,10 @@ function App() {
             <MapTypeDropDown />
           </div>
         </div>
-        <Map />
+        <div className="relative">
+          <Map />
+          <MapLegend />
+        </div>
         <CurrentWeather />
         <HourlyForecast />
         <DailyForecast />
