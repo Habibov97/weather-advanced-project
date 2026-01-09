@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, Suspense, useState } from 'react';
 import AdditionalInfo from './components/Cards/AdditionalInfo';
 import CurrentWeather from './components/Cards/CurrentWeather';
 import DailyForecast from './components/Cards/DailyForecast';
@@ -10,6 +10,10 @@ import { useQuery } from '@tanstack/react-query';
 import { getGeoCode } from './api';
 import MapTypeDropDown from './components/dropdowns/MapTypeDropdown';
 import MapLegend from './components/MapLegend';
+import CurrentSkeleton from './components/skeletons/CurrentSkeleton';
+import HourlySkeleton from './components/skeletons/HourlySkeleton';
+import DailySkeleton from './components/skeletons/DailySkeleton';
+import AdditionalSkeleton from './components/skeletons/AdditionalSkeleton';
 
 type MapContextType = {
   coords: Coords;
@@ -57,10 +61,18 @@ function App() {
           <Map />
           <MapLegend />
         </div>
-        <CurrentWeather />
-        <HourlyForecast />
-        <DailyForecast />
-        <AdditionalInfo />
+        <Suspense fallback={<CurrentSkeleton />}>
+          <CurrentWeather />
+        </Suspense>
+        <Suspense fallback={<HourlySkeleton />}>
+          <HourlyForecast />
+        </Suspense>
+        <Suspense fallback={<DailySkeleton />}>
+          <DailyForecast />
+        </Suspense>
+        <Suspense fallback={<AdditionalSkeleton />}>
+          <AdditionalInfo />
+        </Suspense>
       </MapContext.Provider>
     </div>
   );
