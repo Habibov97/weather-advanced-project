@@ -15,6 +15,7 @@ import HourlySkeleton from './components/skeletons/HourlySkeleton';
 import DailySkeleton from './components/skeletons/DailySkeleton';
 import AdditionalSkeleton from './components/skeletons/AdditionalSkeleton';
 import SidePanel from './components/SidePanel';
+import Hamburger from '/src/assets/hamburger.svg?react';
 
 type MapContextType = {
   coords: Coords;
@@ -31,6 +32,7 @@ function App() {
   const [coordinates, setCoordinates] = useState<Coords>({ lat: 40, lon: 49 });
   const [location, setLocation] = useState('Baku');
   const [mapType, setMapType] = useState('clouds_new');
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true);
 
   const { data: geoCodeData } = useQuery({
     queryKey: ['geocode', location],
@@ -58,6 +60,9 @@ function App() {
               <p className="text-2xl font-semibold">Map type:</p>
               <MapTypeDropDown />
             </div>
+            <button onClick={() => setIsSidePanelOpen(true)}>
+              <Hamburger className="size-8 invert" />
+            </button>
           </div>
           <div className="relative">
             <Map />
@@ -76,7 +81,7 @@ function App() {
             <AdditionalInfo />
           </Suspense>
         </div>
-        <SidePanel />
+        <SidePanel isSidePanelOpen={isSidePanelOpen} setIsSidePanelOpen={setIsSidePanelOpen} />
       </>
     </MapContext.Provider>
   );
