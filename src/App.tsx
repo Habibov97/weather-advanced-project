@@ -14,6 +14,7 @@ import CurrentSkeleton from './components/skeletons/CurrentSkeleton';
 import HourlySkeleton from './components/skeletons/HourlySkeleton';
 import DailySkeleton from './components/skeletons/DailySkeleton';
 import AdditionalSkeleton from './components/skeletons/AdditionalSkeleton';
+import SidePanel from './components/SidePanel';
 
 type MapContextType = {
   coords: Coords;
@@ -45,36 +46,39 @@ function App() {
     location === 'custom' ? coordinates : { lat: geoCodeData?.[0].lat ?? 0, lon: geoCodeData?.[0].lon ?? 0 };
 
   return (
-    <div className="flex flex-col gap-8 bg-card">
-      <MapContext.Provider value={{ coords, onMapClick, location, setLocation, mapType, setMapType }}>
-        <div className="flex gap-8 mt-10">
-          <div className="flex gap-4 items-center">
-            <p className="text-2xl font-semibold">Location:</p>
-            <LocationDropDown />
+    <MapContext.Provider value={{ coords, onMapClick, location, setLocation, mapType, setMapType }}>
+      <>
+        <div className="flex flex-col gap-8 bg-card">
+          <div className="flex gap-8 mt-10">
+            <div className="flex gap-4 items-center">
+              <p className="text-2xl font-semibold">Location:</p>
+              <LocationDropDown />
+            </div>
+            <div className="flex gap-4 items-center">
+              <p className="text-2xl font-semibold">Map type:</p>
+              <MapTypeDropDown />
+            </div>
           </div>
-          <div className="flex gap-4 items-center">
-            <p className="text-2xl font-semibold">Map type:</p>
-            <MapTypeDropDown />
+          <div className="relative">
+            <Map />
+            <MapLegend />
           </div>
+          <Suspense fallback={<CurrentSkeleton />}>
+            <CurrentWeather />
+          </Suspense>
+          <Suspense fallback={<HourlySkeleton />}>
+            <HourlyForecast />
+          </Suspense>
+          <Suspense fallback={<DailySkeleton />}>
+            <DailyForecast />
+          </Suspense>
+          <Suspense fallback={<AdditionalSkeleton />}>
+            <AdditionalInfo />
+          </Suspense>
         </div>
-        <div className="relative">
-          <Map />
-          <MapLegend />
-        </div>
-        <Suspense fallback={<CurrentSkeleton />}>
-          <CurrentWeather />
-        </Suspense>
-        <Suspense fallback={<HourlySkeleton />}>
-          <HourlyForecast />
-        </Suspense>
-        <Suspense fallback={<DailySkeleton />}>
-          <DailyForecast />
-        </Suspense>
-        <Suspense fallback={<AdditionalSkeleton />}>
-          <AdditionalInfo />
-        </Suspense>
-      </MapContext.Provider>
-    </div>
+        <SidePanel />
+      </>
+    </MapContext.Provider>
   );
 }
 
