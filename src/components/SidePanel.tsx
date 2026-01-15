@@ -25,7 +25,7 @@ export default function SidePanel(props: Props) {
       )}
     >
       <button onClick={() => setIsSidePanelOpen(false)}>
-        <ChevronLeft className="size-8 invert lg:hidden" />
+        <ChevronLeft className="size-8  lg:hidden" />
       </button>
       <Suspense fallback={<SidePanelSkeleton />}>
         <AirPollution />
@@ -51,7 +51,7 @@ function AirPollution() {
         <h1 className="text-xl font-semibold">AQI</h1>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Information className="size-4 invert" />
+            <Information className="size-4 " />
           </TooltipTrigger>
           <TooltipContent className="z-2000">
             <p className="max-w-xs">
@@ -100,7 +100,7 @@ function AirPollution() {
                 <span className="text-lg font-bold">{key}</span>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Information className="size-4 invert" />
+                    <Information className="size-4 " />
                   </TooltipTrigger>
                   <TooltipContent className="z-2000">
                     <p className="max-w-xs">Consentration of {pollutantNameMapping[key.toUpperCase() as Pollutant]}</p>
@@ -110,7 +110,7 @@ function AirPollution() {
               <span className="text-lg font-semibold">{value}</span>
             </div>
             <Slider min={0} max={max} value={[value]} disabled />
-            <div className="flex jusitfy-between text-xs">
+            <div className="flex justify-between text-xs">
               <p>0</p>
               <p>{max}</p>
             </div>

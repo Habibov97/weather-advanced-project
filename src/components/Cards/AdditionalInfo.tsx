@@ -25,7 +25,7 @@ export default function AdditionalInfo() {
         <div key={value} className="flex justify-between">
           <div className="flex items-center gap-4">
             <span>{label}</span>
-            <Icon className="size-8 invert" />
+            <Icon className="size-8 " />
           </div>
           <span>
             <FormatComponentForAdditionalInfo value={value} number={data.current[value]} />
