@@ -12,12 +12,12 @@ export default function Card({ children, title, className, childrenClassName }: 
   return (
     <div
       className={clsx(
-        'p-4 rounded-xl bg-linear-to-br from-card to-card/60 bg-zinc-800 shadow-md flex flex-col gap-4',
+        'p-4 rounded-xl bg-linear-to-br from-card to-card/60 bg-zinc-800 shadow-md flex flex-col gap-4 2xl:h-full',
         className
       )}
     >
       <h2 className="text-2xl font-semibold text-green-500">{title}</h2>
-      <div className={clsx(childrenClassName, 'animate-[fade-in_1s_ease-out_forwards]')}>{children}</div>
+      <div className={clsx(childrenClassName, 'animate-[fade-in_1s_ease-out_forwards] 2xl:flex-1')}>{children}</div>
     </div>
   );
 }

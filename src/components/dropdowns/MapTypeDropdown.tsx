@@ -8,7 +8,7 @@ export default function MapTypeDropDown({}: Props) {
 
   return (
     <Select value={mapType} onValueChange={(value) => setMapType(value)}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-full xs:w-[180px]">
         <SelectValue placeholder={`Choose the may type`} />
       </SelectTrigger>
       <SelectContent className="z-1001">
