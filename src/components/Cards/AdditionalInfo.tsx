@@ -1,14 +1,14 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import Card from './Card';
 import { getWeather } from '../../api';
+import { useMapContext } from '../../hooks/useMapContext';
+import FormatComponentForAdditionalInfo from '../../utils/FormatComponentForAdditionalInfo';
+import Card from './Card';
+import Cloud from '/src/assets/cloud.svg?react';
+import Pressure from '/src/assets/pressure.svg?react';
 import Sunrise from '/src/assets/sunrise.svg?react';
 import Sunset from '/src/assets/sunset.svg?react';
-import Cloud from '/src/assets/cloud.svg?react';
 import Uv from '/src/assets/uv.svg?react';
 import Wind from '/src/assets/Wind.svg?react';
-import Pressure from '/src/assets/pressure.svg?react';
-import FormatComponentForAdditionalInfo from '../../utils/FormatComponentForAdditionalInfo';
-import { useMapContext } from '../../hooks/useMapContext';
 
 export default function AdditionalInfo() {
   const { coords } = useMapContext(); //coords via context

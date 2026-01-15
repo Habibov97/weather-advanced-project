@@ -1,8 +1,8 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import Card from './Card';
 import { getWeather } from '../../api';
-import WeatherIcon from '../WeatherIcon';
 import { useMapContext } from '../../hooks/useMapContext';
+import WeatherIcon from '../WeatherIcon';
+import Card from './Card';
 
 export default function HourlyForecast() {
   const { coords } = useMapContext(); //coords via context

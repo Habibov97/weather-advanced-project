@@ -1,23 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
 import { createContext, Suspense, useState } from 'react';
+import { getGeoCode } from './api';
 import AdditionalInfo from './components/Cards/AdditionalInfo';
 import CurrentWeather from './components/Cards/CurrentWeather';
 import DailyForecast from './components/Cards/DailyForecast';
 import HourlyForecast from './components/Cards/HourlyForecast';
-import Map from './components/Map';
-import type { Coords } from './types';
 import LocationDropDown from './components/dropdowns/LocationDropDown';
-import { useQuery } from '@tanstack/react-query';
-import { getGeoCode } from './api';
 import MapTypeDropDown from './components/dropdowns/MapTypeDropdown';
-import MapLegend from './components/MapLegend';
-import CurrentSkeleton from './components/skeletons/CurrentSkeleton';
-import HourlySkeleton from './components/skeletons/HourlySkeleton';
-import DailySkeleton from './components/skeletons/DailySkeleton';
-import AdditionalSkeleton from './components/skeletons/AdditionalSkeleton';
-import SidePanel from './components/SidePanel';
-import Hamburger from '/src/assets/hamburger.svg?react';
-import MobileHeader from './components/MobileHeader';
 import LightDarkToggle from './components/LightDarkToggle';
+import Map from './components/Map';
+import MapLegend from './components/MapLegend';
+import MobileHeader from './components/MobileHeader';
+import SidePanel from './components/SidePanel';
+import AdditionalSkeleton from './components/skeletons/AdditionalSkeleton';
+import CurrentSkeleton from './components/skeletons/CurrentSkeleton';
+import DailySkeleton from './components/skeletons/DailySkeleton';
+import HourlySkeleton from './components/skeletons/HourlySkeleton';
+import type { Coords } from './types';
+import Hamburger from '/src/assets/hamburger.svg?react';
 
 type MapContextType = {
   coords: Coords;

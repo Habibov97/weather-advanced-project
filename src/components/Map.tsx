@@ -1,8 +1,8 @@
-import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { useMapContext } from '../hooks/useMapContext';
-import { useEffect } from 'react';
 import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
+import 'leaflet/dist/leaflet.css';
+import { useEffect } from 'react';
+import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
+import { useMapContext } from '../hooks/useMapContext';
 
 type Props = {};
 

@@ -1,5 +1,4 @@
 import { useMapContext } from '@/hooks/useMapContext';
-import React from 'react';
 
 type Props = {};
 

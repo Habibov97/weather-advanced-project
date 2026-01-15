@@ -1,14 +1,14 @@
 import { getAirPollution } from '@/api';
 import { useMapContext } from '@/hooks/useMapContext';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import clsx from 'clsx';
 import { Suspense } from 'react';
 import Card from './Cards/Card';
-import { Slider } from './ui/slider';
-import clsx from 'clsx';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-import Information from '/src/assets/information.svg?react';
-import ChevronLeft from '/src/assets/ChevronLeft.svg?react';
 import SidePanelSkeleton from './skeletons/SidePanelSkeleton';
+import { Slider } from './ui/slider';
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
+import ChevronLeft from '/src/assets/ChevronLeft.svg?react';
+import Information from '/src/assets/information.svg?react';
 
 type Props = {
   isSidePanelOpen: boolean;
